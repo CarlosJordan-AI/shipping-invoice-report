@@ -1,1 +1,14 @@
+# Python bytecode & cache
+__pycache__/
+*.pyc
+
+# Virtual envs
+.venv/
+
+# OS junk
+.DS_Store
+
+# Local db & generated outputs
+app.db
+*.csv
 
