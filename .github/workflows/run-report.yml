@@ -1,0 +1,49 @@
+name: Run Report
+
+on:
+  workflow_dispatch:
+    inputs:
+      carrier:
+        description: "Carrier filter (DHLGM, UPS, FedEx)"
+        required: true
+        default: "DHLGM"
+      factory:
+        description: "Factory ID (1, 2, 3)"
+        required: true
+        default: "2"
+      start:
+        description: "Start date (YYYY-MM-DD)"
+        required: true
+        default: "2023-12-01"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Seed fake database
+        run: python app.py seed
+
+      - name: Run report
+        run: |
+          python app.py report \
+            --carrier "${{ github.event.inputs.carrier }}" \
+            --factory ${{ github.event.inputs.factory }} \
+            --start "${{ github.event.inputs.start }}" \
+            --out shipments.csv
+
+      - name: Upload CSV artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shipments-${{ github.event.inputs.carrier }}-f${{ github.event.inputs.factory }}
+          path: shipments.csv
