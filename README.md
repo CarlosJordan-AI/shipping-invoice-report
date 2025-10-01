@@ -3,7 +3,8 @@
 > **Portfolio project** — This demo uses **fake but realistic data** to simulate a real-world **operations & finance report**:  
 > _“Find all invoiced shipments for a carrier from a start date and factory, with tracking numbers and invoice weeks.”_
 
-[![Run Report](https://github.com/<CarlosJordan-AI>/shipping-invoice-report/actions/workflows/run-report.yml/badge.svg)](../../actions/workflows/run-report.yml)
+[![Run Report](https://github.com/CarlosJordan-AI/shipping-invoice-report/actions/workflows/run-report.yml/badge.svg)](https://github.com/CarlosJordan-AI/shipping-invoice-report/actions/workflows/run-report.yml)
+
 
 ---
 
